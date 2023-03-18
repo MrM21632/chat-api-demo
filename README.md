@@ -31,6 +31,12 @@ Start the service:
 pg_ctl -D /path/to/dbfolder -l /path/to/service/log start
 ```
 
+Stop the service:
+
+```shell
+pg_ctl -D /path/to/dbfolder -m smart stop
+```
+
 Create the `chatdata` database:
 
 ```shell
