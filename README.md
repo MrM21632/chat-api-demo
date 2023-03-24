@@ -62,15 +62,8 @@ psql postgresql://postgres@localhost:5432/chatdata
 
 ### Overview
 
-So what exactly is this API? In short, it is a very simple, barebones, fully text-based chat API. This means no support for images (aside from providing hyperlinks), no avatars, no detailed user profiles. Just servers with their own channels, the messages contained within, and user accounts.
+So what exactly is this API? In short, it is a very simple, barebones, fully text-based chat API. This means no support for images (aside from providing hyperlinks), no avatars, and no detailed user profiles. Just servers with their own channels, the messages contained within, and user accounts. This project isn't really intended to construct a more complex system, so this will suffice.
 
-There are a few more nuances than that, though. There are some special relationships, for instance, between these different entities:
-
-* Servers also have an associated list of both banned users (i.e., people who can't access the server or its channels) and moderators (i.e., people who are responsible for maintaining the server and its channels)
-* Users can block and unblock other users, preventing them from seeing other users' messages across channels and servers alike
+There are a few more nuances than that, though. There are some special relationships, for instance, between these different entities. Servers have an associated list of both banned users (i.e., people who can't access the server or its channels) and moderators (i.e., people who are responsible for maintaining the server and its channels). Users can block and unblock other users, preventing them from seeing other users' messages across channels and servers alike. Moderators can ban users from servers.
 
 The API can also be leveraged to query for messages in a given channel. This can be done by a given user ID, or by looking for certain character sequences in messages.
-
-### Endpoints
-
-TBD.
