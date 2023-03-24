@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,c++,java,python,go,rust,ruby,intellij,eclipse,sublimetext,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,c++,java,python,go,rust,ruby,intellij,eclipse,sublimetext,node
 
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
 ### C++ ###
 # Prerequisites
 *.d
