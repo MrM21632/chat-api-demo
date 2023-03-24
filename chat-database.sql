@@ -15,15 +15,10 @@ CREATE TABLE chat_data.useracct (
     userid   uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
     username VARCHAR(32) NOT NULL UNIQUE,
     email    TEXT NOT NULL UNIQUE,
+
     -- Stored as a salted hashstring, along with its salt
     password TEXT NOT NULL,
 	passsalt TEXT NOT NULL
-);
-
--- Server Channels
-CREATE TABLE chat_data.channel (
-    channelid    uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
-    channel_name TEXT NOT NULL UNIQUE
 );
 
 -- Servers
@@ -32,14 +27,21 @@ CREATE TABLE chat_data.server (
     server_name TEXT NOT NULL UNIQUE
 );
 
+-- Channels
+CREATE TABLE chat_data.channel (
+    channelid    uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    serverid     uuid NOT NULL,
+    channel_name TEXT NOT NULL UNIQUE
+);
+
 -- User Messages within a given Channel
 CREATE TABLE chat_data.message (
+    messageid          uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
     channelid          uuid NOT NULL,
     userid             uuid NOT NULL,
     contents           TEXT NOT NULL,
     created_time       TIMESTAMP WITH TIME ZONE NOT NULL,
-    last_modified_time TIMESTAMP WITH TIME ZONE NOT NULL,
-    PRIMARY KEY(channelid, userid)
+    last_modified_time TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
 -- Managing blocklists for users
@@ -48,14 +50,6 @@ CREATE TABLE chat_data.user_blocklist (
     userid2      uuid NOT NULL,
     created_time TIMESTAMP WITH TIME ZONE NOT NULL,
     PRIMARY KEY(userid1, userid2)
-);
-
--- Managing server channels
-CREATE TABLE chat_data.server_channel (
-    serverid     uuid NOT NULL,
-    channelid    uuid NOT NULL,
-	created_time TIMESTAMP WITH TIME ZONE NOT NULL,
-    PRIMARY KEY(serverid, channelid)
 );
 
 -- Managing banned users for servers
