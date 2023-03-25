@@ -1,11 +1,16 @@
 package com.mrm21632.chatapi.database;
 
+import com.mrm21632.chatapi.models.Server;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 /**
@@ -37,6 +42,26 @@ public class ChatApiDao {
             logger.error("Failed to load properties from file database.properties", ioe);
         } catch (Exception e) {
             logger.error("Unexpected error occurred", e);
+        }
+    }
+
+    public List<Server> getAllServers() {
+        String sql = "SELECT * FROM chat_data.server";
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                .executeAndFetch(Server.class);
+        }
+    }
+
+    public List<Server> getServer(UUID uuid) {
+        String sql =
+            "SELECT serverid, server_name FROM chat_data.server" +
+            "WHERE serverid = :uuid";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                .addParameter("uuid", uuid)
+                .executeAndFetch(Server.class);
         }
     }
 }
