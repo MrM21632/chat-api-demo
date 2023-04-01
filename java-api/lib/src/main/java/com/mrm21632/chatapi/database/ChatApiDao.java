@@ -24,7 +24,7 @@ public class ChatApiDao {
         try {
             Properties properties = new Properties();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            InputStream stream = loader.getResourceAsStream("/database.properties");
+            InputStream stream = loader.getResourceAsStream("database.properties");
             properties.load(stream);
 
             int port = Integer.parseInt(properties.getProperty("database.port", "5432"));
@@ -46,7 +46,7 @@ public class ChatApiDao {
     }
 
     public List<Server> getAllServers() {
-        String sql = "SELECT * FROM chat_data.server";
+        String sql = "SELECT serverid, server_name as serverName FROM chat_data.server";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
                 .executeAndFetch(Server.class);

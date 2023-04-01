@@ -1,10 +1,31 @@
 plugins {
+    id 'base'
     id 'java'
     id 'application'
 }
 
 repositories {
     mavenCentral()
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes(
+            'Implementation-Title': 'chat-api-server',
+            'Implementation-Version': '1.0.0',
+            'Main-Class': 'com.mrm21632.chatapi.Application'
+        )
+    }
+
+    archiveBaseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task startServer(type: JavaExec) {
+    main = 'com.mrm21632.chatapi.Application'
+    description = 'Start the Chat API Server'
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 dependencies {
