@@ -1,11 +1,11 @@
 package com.mrm21632.chatapi.controllers;
 
 import com.google.gson.Gson;
+import com.mrm21632.chatapi.models.Server;
 import com.mrm21632.chatapi.models.requests.ServerPostRequestBody;
 import com.mrm21632.chatapi.services.ServerService;
 import com.mrm21632.chatapi.utils.JsonTransformer;
 
-import static spark.Spark.before;
 import static spark.Spark.get;
 import static spark.Spark.path;
 import static spark.Spark.post;
@@ -25,10 +25,10 @@ public class ServerController {
             }, new JsonTransformer());
             post("", (req, res) -> {
                 ServerPostRequestBody body = new Gson().fromJson(req.body(), ServerPostRequestBody.class);
-                ServerService.add(body);
+                Server result = ServerService.add(body);
                 res.type("application/json");
                 res.status(201);
-                return null;
+                return result;
             }, new JsonTransformer());
         });
     }

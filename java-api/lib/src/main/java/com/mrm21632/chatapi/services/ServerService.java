@@ -17,10 +17,11 @@ public class ServerService {
         return dao.getAllServers();
     }
 
-    public static void add(ServerPostRequestBody body) {
+    public static Server add(ServerPostRequestBody body) {
         Server server = new Server();
         server.setServerName(body.getServerName());
         server.setServerid(UUID.randomUUID());
         dao.addServer(server);
+        return server;
     }
 }
