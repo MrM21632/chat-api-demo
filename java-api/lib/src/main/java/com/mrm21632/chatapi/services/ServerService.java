@@ -18,9 +18,9 @@ public class ServerService {
     }
 
     public static Server add(ServerPostRequestBody body) {
-        Server server = new Server();
-        server.setServerName(body.getServerName());
-        server.setServerid(UUID.randomUUID());
+        Server server = new Server()
+            .setServerName(body.getServerName())
+            .setServerid(UUID.randomUUID());
         dao.addServer(server);
         return server;
     }
