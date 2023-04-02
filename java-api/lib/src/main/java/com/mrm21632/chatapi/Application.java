@@ -6,10 +6,19 @@ package com.mrm21632.chatapi;
 import com.mrm21632.chatapi.controllers.ServerController;
 
 import static spark.Spark.port;
+import static spark.Spark.initExceptionHandler;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Application {
+    private static final Logger logger = LoggerFactory.getLogger(Application.class.getName());
+
     public static void main(String[] args) {
+        // Boilerplating
         port(8080);
+        initExceptionHandler(e -> logger.error("Initialization failed", e));
+
         ServerController.run();
     }
 }

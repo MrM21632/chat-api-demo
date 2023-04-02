@@ -11,7 +11,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 [
     {
-        "server_name": "example-server",
+        "serverName": "example-server",
         "serverid": "11111111-2222-3333-4444-555566667777"
     }
 ]
@@ -21,7 +21,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 
 ```json
 {
-    "server_name": "example-server"
+    "serverName": "example-server"
 }
 ```
 
@@ -31,7 +31,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 
 ```json
 {
-    "server_name": "example-server",
+    "serverName": "example-server",
     "serverid": "11111111-2222-3333-4444-555566667777"
 }
 ```
@@ -41,7 +41,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 // PATCH (example)
 {
-    "server_name": "example-server"
+    "serverName": "example-server"
 }
 ```
 
@@ -54,7 +54,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 [
     {
-        "channel_name": "example-channel",
+        "channelName": "example-channel",
         "channelid": "11111111-2222-3333-4444-555566667777",
         "serverid": "11111111-2222-3333-4444-555566667777"
     }
@@ -150,7 +150,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 [
     {
-        "channel_name": "example-channel",
+        "channelName": "example-channel",
         "channelid": "11111111-2222-3333-4444-555566667777",
         "serverid": "11111111-2222-3333-4444-555566667777"
     }
@@ -161,7 +161,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 
 ```json
 {
-    "channel_name": "example-channel",
+    "channelName": "example-channel",
     "serverid": "11111111-2222-3333-4444-555566667777"
 }
 ```
@@ -172,7 +172,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 
 ```json
 {
-    "channel_name": "example-channel",
+    "channelName": "example-channel",
     "channelid": "11111111-2222-3333-4444-555566667777",
     "serverid": "11111111-2222-3333-4444-555566667777"
 }
@@ -183,7 +183,7 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 // PATCH (example)
 {
-    "channel_name": "example-channel"
+    "channelName": "example-channel"
 }
 ```
 
@@ -197,8 +197,8 @@ This document provides an overview of all endpoints and HTTP methods supported b
 [
     {
         "contents": "This is a message.",
-        "created_time": "2023-03-24T14:56:34Z",
-        "last_modified_time": "2023-03-24T14:56:34Z",
+        "createdTime": "2023-03-24T14:56:34Z",
+        "lastModifiedTime": "2023-03-24T14:56:34Z",
         "messageid": "11111111-2222-3333-4444-555566667777",
         "channelid": "11111111-2222-3333-4444-555566667777",
         "userid": "11111111-2222-3333-4444-555566667777"
@@ -211,8 +211,8 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 {
     "contents": "This is a message.",
-    "created_time": "2023-03-24T14:56:34Z",
-    "last_modified_time": "2023-03-24T14:56:34Z",
+    "createdTime": "2023-03-24T14:56:34Z",
+    "lastModifiedTime": "2023-03-24T14:56:34Z",
     "channelid": "11111111-2222-3333-4444-555566667777",
     "userid": "11111111-2222-3333-4444-555566667777"
 }
@@ -225,8 +225,8 @@ This document provides an overview of all endpoints and HTTP methods supported b
 ```json
 {
     "contents": "This is a message.",
-    "created_time": "2023-03-24T14:56:34Z",
-    "last_modified_time": "2023-03-24T14:56:34Z",
+    "createdTime": "2023-03-24T14:56:34Z",
+    "lastModifiedTime": "2023-03-24T14:56:34Z",
     "messageid": "11111111-2222-3333-4444-555566667777",
     "channelid": "11111111-2222-3333-4444-555566667777",
     "userid": "11111111-2222-3333-4444-555566667777"
@@ -239,8 +239,8 @@ This document provides an overview of all endpoints and HTTP methods supported b
 // PUT
 {
     "contents": "This is a message.",
-    "created_time": "2023-03-24T14:56:34Z",
-    "last_modified_time": "2023-03-24T14:56:34Z",
+    "createdTime": "2023-03-24T14:56:34Z",
+    "lastModifiedTime": "2023-03-24T14:56:34Z",
     "messageid": "11111111-2222-3333-4444-555566667777",
     "channelid": "11111111-2222-3333-4444-555566667777",
     "userid": "11111111-2222-3333-4444-555566667777"
@@ -262,8 +262,8 @@ This document provides an overview of all endpoints and HTTP methods supported b
 [
     {
         "contents": "This is a message.",
-        "created_time": "2023-03-24T14:56:34Z",
-        "last_modified_time": "2023-03-24T14:56:34Z",
+        "createdTime": "2023-03-24T14:56:34Z",
+        "lastModifiedTime": "2023-03-24T14:56:34Z",
         "messageid": "11111111-2222-3333-4444-555566667777",
         "channelid": "11111111-2222-3333-4444-555566667777",
         "userid": "11111111-2222-3333-4444-555566667777"

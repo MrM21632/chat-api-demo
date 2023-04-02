@@ -55,13 +55,23 @@ public class ChatApiDao {
 
     public List<Server> getServer(UUID uuid) {
         String sql =
-            "SELECT serverid, server_name FROM chat_data.server" +
+            "SELECT serverid, server_name as serverName FROM chat_data.server" +
             "WHERE serverid = :uuid";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                .addParameter("uuid", uuid)
+                .addParameter("uuid", uuid.toString())
                 .executeAndFetch(Server.class);
+        }
+    }
+
+    public void addServer(Server server) {
+        String sql = "INSERT INTO chat_data.server (serverid, server_name) VALUES (:id, :name)";
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
+                .addParameter("id", server.getServerid())
+                .addParameter("name", server.getServerName())
+                .executeUpdate();
         }
     }
 }

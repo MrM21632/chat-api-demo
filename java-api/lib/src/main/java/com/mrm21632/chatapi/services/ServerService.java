@@ -1,9 +1,11 @@
 package com.mrm21632.chatapi.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.mrm21632.chatapi.database.ChatApiDao;
 import com.mrm21632.chatapi.models.Server;
+import com.mrm21632.chatapi.models.requests.ServerPostRequestBody;
 
 import spark.Request;
 import spark.Response;
@@ -13,5 +15,12 @@ public class ServerService {
 
     public static List<Server> getAll(Request req, Response res) {
         return dao.getAllServers();
+    }
+
+    public static void add(ServerPostRequestBody body) {
+        Server server = new Server();
+        server.setServerName(body.getServerName());
+        server.setServerid(UUID.randomUUID());
+        dao.addServer(server);
     }
 }
