@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Modify these configurations as needed for your testing needs -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:posgresql://localhost:5432/chatdata</property>
+        <property name="hibernate.connection.username">posgtres</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="show_sql">true</property>
+
+        <!-- Data model class mappings -->
+        <mapping package="com.mrm21632.chatapi.models" />
+        <mapping class="com.mrm21632.chatapi.models.Channel" />
+        <mapping class="com.mrm21632.chatapi.models.Message" />
+        <mapping class="com.mrm21632.chatapi.models.Server" />
+        <mapping class="com.mrm21632.chatapi.models.UserAccount" />
+    </session-factory>
+</hibernate-configuration>
