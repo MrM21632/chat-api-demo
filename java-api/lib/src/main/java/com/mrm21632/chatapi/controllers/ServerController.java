@@ -11,6 +11,8 @@ import static spark.Spark.get;
 import static spark.Spark.path;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.internalServerError;
+import static spark.Spark.notFound;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,17 @@ public class ServerController {
     public static void run() {
         logger.info("Initializing Server controller.");
         path("/servers", () -> {
+            notFound((req, res) -> {
+                res.type("application/json");
+                return "{\"message\": \"Entity Not Found\"}";
+            });
+
+            internalServerError((req, res) -> {
+                res.type("application/json");
+                return "{\"message\": \"Internal Server Error Occurred\"}";
+            });
+
+
             get("", (req, res) -> {
                 res.type("application/json");
                 return ServerService.getAll();

@@ -14,6 +14,8 @@ import static spark.Spark.get;
 import static spark.Spark.path;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.internalServerError;
+import static spark.Spark.notFound;
 
 public class UserAccountController {
     private static final Logger logger = LoggerFactory.getLogger(UserAccountController.class.getName());
@@ -21,6 +23,16 @@ public class UserAccountController {
     public static void run() {
         logger.info("Initializing UserAccount controller");
         path("/users", () -> {
+            notFound((req, res) -> {
+                res.type("application/json");
+                return "{\"message\": \"Entity Not Found\"}";
+            });
+
+            internalServerError((req, res) -> {
+                res.type("application/json");
+                return "{\"message\": \"Internal Server Error Occurred\"}";
+            });
+
             get("", (req, res) -> {
                 res.type("application/json");
                 return UserAccountService.getAll();
