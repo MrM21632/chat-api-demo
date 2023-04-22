@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * Model class representing a chat server.
  */
 @Entity
-@Table(name = "server", schema = "chat_data", catalog = "chatdata")
+@Table(name = "server", schema = "chat_data")
 @Data
 @Accessors(chain = true)
 public class Server {
