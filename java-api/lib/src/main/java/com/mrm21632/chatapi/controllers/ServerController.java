@@ -23,6 +23,12 @@ public class ServerController {
                 res.type("application/json");
                 return ServerService.getAll(req, res);
             }, new JsonTransformer());
+
+            get("/:id", (req, res) -> {
+                res.type("application/json");
+                return ServerService.getServer(req, res, req.params(":id"));
+            }, new JsonTransformer());
+
             post("", (req, res) -> {
                 ServerPostRequestBody body = new Gson().fromJson(req.body(), ServerPostRequestBody.class);
                 Server result = ServerService.add(body);

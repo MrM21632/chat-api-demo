@@ -692,6 +692,7 @@ GitHub.sublime-settings
 .ionide
 
 ### Other files and folders
+.metals/
 chatdata/
 chatdata.log
 

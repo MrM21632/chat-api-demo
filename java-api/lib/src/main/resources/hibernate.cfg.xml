@@ -6,10 +6,11 @@
     <session-factory>
         <!-- Modify these configurations as needed for your testing needs -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:posgresql://localhost:5432/chatdata</property>
-        <property name="hibernate.connection.username">posgtres</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/chatdata</property>
+        <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="show_sql">true</property>
 
         <!-- Data model class mappings -->
