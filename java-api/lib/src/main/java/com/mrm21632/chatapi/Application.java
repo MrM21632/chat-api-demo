@@ -4,6 +4,7 @@
 package com.mrm21632.chatapi;
 
 import com.mrm21632.chatapi.controllers.ServerController;
+import com.mrm21632.chatapi.controllers.UserAccountController;
 
 import static spark.Spark.port;
 import static spark.Spark.initExceptionHandler;
@@ -20,5 +21,6 @@ public class Application {
         initExceptionHandler(e -> logger.error("Initialization failed", e));
 
         ServerController.run();
+        UserAccountController.run();
     }
 }
