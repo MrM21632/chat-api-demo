@@ -12,40 +12,62 @@ import com.mrm21632.chatapi.models.Server;
 import com.mrm21632.chatapi.models.requests.ServerPostRequestBody;
 import com.mrm21632.chatapi.utils.HibernateUtils;
 
-import spark.Request;
-import spark.Response;
-
 public class ServerService {
     private static final Logger logger = LoggerFactory.getLogger(ServerService.class.getName());
     private static final Session session = HibernateUtils.getSessionFactory().openSession();
 
-    public static List<Server> getAll(Request req, Response res) {
+    /* === /servers === */
+    public static List<Server> getAll() {
         String query = "SELECT s FROM Server s";
         return session.createQuery(query, Server.class)
             .getResultList();
     }
 
-    public static Server getServer(Request req, Response res, String serverId) {
-        String query = "SELECT s FROM Server s WHERE s.serverid = :id";
-        return session.createQuery(query, Server.class)
-            .setParameter("id", UUID.fromString(serverId))
-            .uniqueResult();
-    }
-
-    public static Server add(ServerPostRequestBody body) {
+    public static Server addServer(ServerPostRequestBody body) {
         Server server = new Server()
-            .setServerName(body.getServerName())
-            .setServerid(UUID.randomUUID());
+            .setServerName(body.getServerName());
 
         Transaction tx = session.beginTransaction();
         try {
-            session.merge(server);
+            session.persist(server);
             tx.commit();
             return server;
         } catch (Exception e) {
             logger.error("Exception occurred attempting to save new server to datastore", e);
             tx.rollback();
             return null;
+        }
+    }
+
+
+    /* === /servers/:id === */
+    public static Server getServer(String serverId) {
+        String query = "SELECT s FROM Server s WHERE s.serverid = :id";
+        return session.createQuery(query, Server.class)
+            .setParameter("id", UUID.fromString(serverId))
+            .uniqueResult();
+    }
+
+    public static void updateServer(Server server) {
+        Transaction tx = session.beginTransaction();
+        try {
+            session.merge(server);
+            tx.commit();
+        } catch (Exception e) {
+            logger.error("Exception occurred attempting to update server", e);
+            tx.rollback();
+        }
+    }
+
+    public static void deleteServer(String serverId) {
+        Transaction tx = session.beginTransaction();
+        try {
+            Server server = session.find(Server.class, UUID.fromString(serverId));
+            session.remove(server);
+            tx.commit();
+        } catch (Exception e) {
+            logger.error("Exception occurred attempting to delete server", e);
+            tx.rollback();
         }
     }
 }
