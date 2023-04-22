@@ -15,8 +15,6 @@ import static spark.Spark.path;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import java.util.ArrayList;
-
 public class UserAccountController {
     private static final Logger logger = LoggerFactory.getLogger(UserAccountController.class.getName());
 
@@ -25,7 +23,7 @@ public class UserAccountController {
         path("/users", () -> {
             get("", (req, res) -> {
                 res.type("application/json");
-                return new ArrayList<>();
+                return UserAccountService.getAll();
             }, new JsonTransformer());
 
             post("", (req, res) -> {

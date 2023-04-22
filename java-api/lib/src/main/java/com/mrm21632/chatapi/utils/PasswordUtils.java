@@ -10,16 +10,20 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 /**
- * Utility class for securely salting and hashing passwords using PBKDF2. Since this is a demo application, this is
- * sufficient; bear in mind that, for real-world applications, a stronger algorithm like Bcrypt may be preferred,
- * especially if the passwords are highly-sensitive. At the very least, it is recommended to use hundreds of thousands
- * of iterations for PBKDF2 using SHA-2 hashing.
+ * Utility class for securely salting and hashing passwords using PBKDF2.
+ *
+ * This is purely meant for demonstrating how such a flow can be achieved in Java. It's never a good idea to have the
+ * server handle password encryption - this should be a responsibility of the client.
  */
 public class PasswordUtils {
     private static final SecureRandom random = new SecureRandom();
 
     /**
      * Hashes the given password using PBKDF2-HMAC-SHA256, returning the resulting hash and generated salt.
+     *
+     * For demonstration purposes, this is sufficient. Bear in mind that, for real-world, production-quality systems,
+     * you should prefer either a higher number of iterations (i.e., in the hundreds of thousands at the very least),
+     * or another reputable algorithm like Bcrypt.
      *
      * @param password The password to encrypt.
      * @return An array containing both the hashed password and the salt used.
