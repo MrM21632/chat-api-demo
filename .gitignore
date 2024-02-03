@@ -696,4 +696,8 @@ GitHub.sublime-settings
 chatdata/
 chatdata.log
 
+**/.metals/
+**/.gradle/
+**/.bloop/
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,c++,java,python,go,rust,ruby,intellij,eclipse,sublimetext,node
