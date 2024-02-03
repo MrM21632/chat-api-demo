@@ -1,15 +1,15 @@
 package models
 
-import "gorm.io/gorm"
-
-type Tabler interface {
-	TableName() string
-}
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type Server struct {
 	gorm.Model
-	ID   string `gorm:"column:serverid"`
-	Name string `gorm:"column:server_name"`
+	ID       uuid.UUID `gorm:"column:serverid;type:uuid;primary_key;default:gen_random_uuid()"`
+	Name     string    `gorm:"column:server_name;unique"`
+	Channels []Channel `gorm:"ForeignKey:ServerID"`
 }
 
 func (Server) TableName() string {
