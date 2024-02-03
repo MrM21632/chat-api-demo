@@ -45,10 +45,12 @@ if [ -z "${s}" ]; then
     s="$(pwd)/chat-database.sql"
 fi
 
-echo "Initializing database in directory ${d}, logfile=${l}"
+echo "Initializing database in directory ${d} with logfile ${l}"
 initdb -D $d -U postgres -W -E UTF8 -A scram-sha-256
 pg_ctl -D $d -l $l start
 createdb -U postgres chatdata
 psql -U postgres -d chatdata -a -f $s
-echo "Database initialization complete. Access the database using the following command:"
-echo "psql -h localhost -p 5432 -d chatdata -U postgres"
+echo "Database initialization complete."
+echo "Start the database using the following command: pg_ctl -D $d -l $l start"
+echo "Stop the database using the following command: pg_ctl -D $d -m smart stop"
+echo "Access the database using the following command: psql -h localhost -p 5432 -d chatdata -U postgres"
