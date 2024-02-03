@@ -1,16 +1,30 @@
 package main
 
 import (
+	"chat_api/controllers"
 	"chat_api/database"
 	"chat_api/models"
 	"log"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
 func main() {
 	LoadEnv()
 	LoadDatabase()
+
+	r := gin.Default()
+	r.SetTrustedProxies(nil)
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"data": "Hello, World!"})
+	})
+	r.GET("/users", controllers.FindUsers)
+	r.GET("/servers", controllers.FindServers)
+
+	r.Run(":4242")
 }
 
 func LoadDatabase() {
