@@ -46,8 +46,8 @@ CREATE TABLE chat_data.message (
 
 -- Managing blocklists for users
 CREATE TABLE chat_data.user_blocklist (
-    userid1      uuid NOT NULL,
-    userid2      uuid NOT NULL,
+    userid1      uuid NOT NULL,  -- Blocker ID
+    userid2      uuid NOT NULL,  -- Blocked ID
     created_time TIMESTAMP WITH TIME ZONE NOT NULL,
     PRIMARY KEY(userid1, userid2)
 );
