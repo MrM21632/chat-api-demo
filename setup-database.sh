@@ -51,5 +51,6 @@ pg_ctl -D $d -l $l start
 createdb -U postgres chatdata
 psql -U postgres -d chatdata -a -f $s
 echo "Database initialization complete."
-echo "Start the database using the following command: pg_ctl start -l <logfile>"
+echo "Start the database using the following command: pg_ctl -D $d -l $l start"
+echo "Stop the database using the following command: pg_ctl -D $d -m smart stop"
 echo "Access the database using the following command: psql -h localhost -p 5432 -d chatdata -U postgres"
