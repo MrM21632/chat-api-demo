@@ -6,6 +6,7 @@ from db import db, ma
 
 
 class BanListModel(db.Model):
+    __table_args__ = { "schema": "chat_data" }
     __tablename__ = "server_banlist"
 
     server_id = db.Column(

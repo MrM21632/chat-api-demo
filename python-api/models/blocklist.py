@@ -6,6 +6,7 @@ from db import db, ma
 
 
 class BlocklistModel(db.Model):
+    __table_args__ = { "schema": "chat_data" }
     __tablename__ = "user_blocklist"
 
     blocker_id = db.Column(

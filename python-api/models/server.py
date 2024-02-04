@@ -6,6 +6,7 @@ from db import db, ma
 
 
 class ServerModel(db.Model):
+    __table_args__ = { "schema": "chat_data" }
     __tablename__ = "server"
 
     id = db.Column(

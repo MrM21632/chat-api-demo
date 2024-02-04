@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 
+from api import users
 from db import initialize_database
 
 load_dotenv()  # Load in configuration from .env
@@ -31,3 +32,6 @@ initialize_database(app)
 @app.route("/hello")
 def hello():
     return "Hello, World!"
+
+# Add custom routes
+app.register_blueprint(users.bp)

@@ -6,6 +6,7 @@ from db import db, ma
 
 
 class ModListModel(db.Model):
+    __table_args__ = { "schema": "chat_data" }
     __tablename__ = "server_moderator"
 
     server_id = db.Column(
