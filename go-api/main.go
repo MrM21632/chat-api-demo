@@ -24,7 +24,7 @@ func main() {
 	r.GET("/users", controllers.FindUsers)
 	r.GET("/servers", controllers.FindServers)
 
-	r.Run(":4242")
+	r.Run("127.0.0.1:4242")
 }
 
 func LoadDatabase() {
