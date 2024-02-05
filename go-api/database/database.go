@@ -24,12 +24,19 @@ func Connect() {
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=America/New_York",
 		host, username, password, databaseName, port,
 	)
-	Database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
-		NamingStrategy: schema.NamingStrategy{
-			TablePrefix:   "chat_data.",
-			SingularTable: false,
+
+	Database, err = gorm.Open(
+		postgres.New(postgres.Config{
+			DSN:                  dsn,
+			PreferSimpleProtocol: true,
+		}),
+		&gorm.Config{
+			NamingStrategy: schema.NamingStrategy{
+				TablePrefix:   "chat_data.",
+				SingularTable: false,
+			},
 		},
-	})
+	)
 	if err != nil {
 		log.Fatal("Error connecting to database")
 		panic(err)
