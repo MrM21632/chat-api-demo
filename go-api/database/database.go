@@ -32,7 +32,7 @@ func Connect() {
 		}),
 		&gorm.Config{
 			NamingStrategy: schema.NamingStrategy{
-				TablePrefix:   "chat_data.",
+				TablePrefix:   "chat_data.", // This doesn't work for some reason???
 				SingularTable: false,
 			},
 		},

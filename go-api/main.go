@@ -21,8 +21,14 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"data": "Hello, World!"})
 	})
+
+	// User API endpoints
 	r.GET("/users", controllers.FindUsers)
+	r.GET("/users/:id", controllers.FindUser)
+
+	// Server API endpoints
 	r.GET("/servers", controllers.FindServers)
+	r.GET("/servers/:id", controllers.FindServer)
 
 	r.Run("127.0.0.1:4242")
 }

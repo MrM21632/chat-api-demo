@@ -12,6 +12,13 @@ type User struct {
 	PassSalt string    `gorm:"column:passsalt"`
 }
 
+type CreateUserInput struct {
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"passhash" binding:"required"`
+	PassSalt string `json:"passsalt" binding:"required"`
+}
+
 func (User) TableName() string {
 	return "chat_data.useracct"
 }
