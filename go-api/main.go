@@ -25,10 +25,12 @@ func main() {
 	// User API endpoints
 	r.GET("/users", controllers.FindUsers)
 	r.GET("/users/:id", controllers.FindUser)
+	r.POST("/users", controllers.CreateUser)
 
 	// Server API endpoints
 	r.GET("/servers", controllers.FindServers)
 	r.GET("/servers/:id", controllers.FindServer)
+	r.POST("/servers", controllers.CreateServer)
 
 	r.Run("127.0.0.1:4242")
 }

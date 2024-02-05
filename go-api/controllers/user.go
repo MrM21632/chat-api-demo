@@ -32,3 +32,20 @@ func FindUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
+
+func CreateUser(c *gin.Context) {
+	var input models.CreateUserInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	newUser := models.User{
+		Username: input.Username,
+		Email:    input.Email,
+		Password: input.Password,
+		PassSalt: input.PassSalt,
+	}
+	database.Database.Create(&newUser)
+	c.JSON(http.StatusOK, gin.H{"id": newUser.ID})
+}

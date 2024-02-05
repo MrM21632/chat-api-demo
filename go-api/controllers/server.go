@@ -32,3 +32,17 @@ func FindServer(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": server})
 }
+
+func CreateServer(c *gin.Context) {
+	var input models.CreateServerInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	newServer := models.Server{
+		Name: input.Name,
+	}
+	database.Database.Create(&newServer)
+	c.JSON(http.StatusOK, gin.H{"id": newServer.ID})
+}
